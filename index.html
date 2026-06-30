@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkyHelix Airways</title>
+  <style>
+    :root {
+      --bg: #07111f;
+      --panel: rgba(255,255,255,0.08);
+      --panel-strong: rgba(255,255,255,0.14);
+      --text: #f4f7fb;
+      --muted: #aeb9ca;
+      --accent: #5bd3ff;
+      --accent-2: #ff7b54;
+      --line: rgba(255,255,255,0.16);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(91,211,255,0.2), transparent 28%),
+        linear-gradient(135deg, #07111f 0%, #0d1b2e 60%, #02070f 100%);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 56px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0 28px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: white;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 22px;
+      color: var(--muted);
+    }
+
+    nav a:hover { color: var(--text); }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: center;
+      padding: 26px 0 36px;
+    }
+
+    .hero-copy h1 {
+      margin: 10px 0 14px;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(91,211,255,0.14);
+      color: var(--accent);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-weight: 700;
+    }
+
+    .hero-copy p {
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 620px;
+      margin: 0 0 18px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 24px 0 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #2ea6d9);
+      color: #04111e;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--line);
+      color: var(--text);
+    }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .stats div {
+      min-width: 120px;
+      padding: 12px 14px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+
+    .stats strong {
+      display: block;
+      font-size: 1.15rem;
+      color: var(--accent);
+    }
+
+    .stats span {
+      font-size: 0.83rem;
+      color: var(--muted);
+    }
+
+    .card {
+      background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.24);
+    }
+
+    .flight-card h3 { margin: 0 0 12px; }
+    .flight-card p { color: var(--muted); line-height: 1.6; margin: 0 0 16px; }
+
+    .route {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .route:last-child { border-bottom: 0; }
+
+    .route strong { font-size: 1rem; }
+    .route span { color: var(--muted); font-size: 0.9rem; }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 32px 0 16px;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .feature, .destination {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .feature h4, .destination h4 { margin: 8px 0 8px; }
+    .feature p, .destination p { color: var(--muted); line-height: 1.6; margin: 0; }
+
+    .pill {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      background: rgba(91,211,255,0.16);
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .booking {
+      margin-top: 24px;
+      padding: 22px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(91,211,255,0.16), rgba(255,123,84,0.14));
+      border: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .booking h3 { margin: 0 0 8px; }
+    .booking p { margin: 0; color: var(--muted); }
+
+    footer {
+      padding: 24px 0 8px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero, .grid, .booking {
+        grid-template-columns: 1fr;
+      }
+      .hero { gap: 16px; }
+    }
+
+    @media (max-width: 640px) {
+      nav { display: none; }
+      .topbar { padding-bottom: 18px; }
+      .stats { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">✈</div>
+        <span>SkyHelix Airways</span>
+      </div>
+      <nav>
+        <a href="#offers">Offers</a>
+        <a href="#destinations">Destinations</a>
+        <a href="#experience">Experience</a>
+        <a href="#book">Book</a>
+      </nav>
+    </header>
+
+    <main class="hero">
+      <section class="hero-copy">
+        <span class="eyebrow">Premium travel, reimagined</span>
+        <h1>Fly farther with comfort and confidence.</h1>
+        <p>Discover seamless journeys across global cities with SkyHelix. From business trips to dream vacations, enjoy luxury cabin service, flexible fares, and effortless booking from takeoff to touchdown.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#book">Book a Flight</a>
+          <a class="btn btn-secondary" href="#destinations">Explore Routes</a>
+        </div>
+        <div class="stats">
+          <div><strong>120+</strong><span>Destinations</span></div>
+          <div><strong>4.9/5</strong><span>Guest Rating</span></div>
+          <div><strong>24/7</strong><span>Support</span></div>
+        </div>
+      </section>
+
+      <aside class="card flight-card">
+        <h3>Featured Route</h3>
+        <p>Choose your next escape with our most popular premium service.</p>
+        <div class="route">
+          <div>
+            <strong>New York</strong><br />
+            <span>JFK → LAX</span>
+          </div>
+          <span>From $299</span>
+        </div>
+        <div class="route">
+          <div>
+            <strong>Dubai</strong><br />
+            <span>DXB → SIN</span>
+          </div>
+          <span>From $399</span>
+        </div>
+        <div class="route">
+          <div>
+            <strong>London</strong><br />
+            <span>LHR → NYC</span>
+          </div>
+          <span>From $349</span>
+        </div>
+      </aside>
+    </main>
+
+    <section id="offers">
+      <div class="section-title">
+        <span>Why travelers choose SkyHelix</span>
+      </div>
+      <div class="grid">
+        <article class="feature">
+          <span class="pill">Comfort</span>
+          <h4>Spacious cabins</h4>
+          <p>Enjoy roomy seating, premium dining, and quiet spaces designed for restful travel.</p>
+        </article>
+        <article class="feature">
+          <span class="pill">Flexibility</span>
+          <h4>Easy changes</h4>
+          <p>Modify plans with simple fare options and fast rescheduling support.</p>
+        </article>
+        <article class="feature">
+          <span class="pill">Reliability</span>
+          <h4>On-time arrivals</h4>
+          <p>Stay confident with dependable routing, live updates, and smooth transfers.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="destinations">
+      <div class="section-title">
+        <span>Popular destinations</span>
+      </div>
+      <div class="grid">
+        <article class="destination">
+          <h4>Paris</h4>
+          <p>City breaks, art, champagne, and elegant evenings by the Seine.</p>
+        </article>
+        <article class="destination">
+          <h4>Tokyo</h4>
+          <p>Experience futuristic cityscapes, world-class cuisine, and calm temples.</p>
+        </article>
+        <article class="destination">
+          <h4>Santorini</h4>
+          <p>Blue domes, sea views, and sunsets that feel unforgettable.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="book" class="booking">
+      <div>
+        <h3>Ready for your next journey?</h3>
+        <p>Reserve your seat today and enjoy premium perks from the moment you check in.</p>
+      </div>
+      <a class="btn btn-primary" href="mailto:reservations@skyhelix.com">Reserve Now</a>
+    </section>
+
+    <footer>
+      © 2026 SkyHelix Airways. Elevating every mile.
+    </footer>
+  </div>
+</body>
+</html>

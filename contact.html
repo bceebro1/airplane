@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkyHelix Airways | Contact</title>
+  <style>
+    :root {
+      --bg: #07111f;
+      --panel: rgba(255,255,255,0.08);
+      --text: #f4f7fb;
+      --muted: #aeb9ca;
+      --accent: #5bd3ff;
+      --accent-2: #ff7b54;
+      --line: rgba(255,255,255,0.16);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(91,211,255,0.18), transparent 24%),
+        linear-gradient(135deg, #07111f 0%, #0d1b2e 60%, #02070f 100%);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1080px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 56px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0 28px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: white;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 22px;
+      color: var(--muted);
+    }
+
+    nav a:hover { color: var(--text); }
+
+    .card {
+      background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.24);
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+    }
+
+    .intro {
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .info-box {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .info-box h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    .info-box p {
+      margin: 6px 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent), #2ea6d9);
+      color: #04111e;
+    }
+
+    footer {
+      padding: 24px 0 8px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    @media (max-width: 760px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="topbar">
+      <a href="index.html" class="brand">
+        <div class="brand-mark">✈</div>
+        <span>SKYHELIX AIRWAYS</span>
+      </a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main class="card">
+      <h1>Contact SkyHelix</h1>
+      <p class="intro">Need help planning your next journey? Our team is available to assist with bookings, route details, and premium travel inquiries.</p>
+
+      <div class="contact-grid">
+        <div class="info-box">
+          <h3>Customer Support</h3>
+          <p>Email: support@skyhelix.com</p>
+          <p>Phone: +1 (800) 555-0148</p>
+          <p>Hours: 24/7 assistance</p>
+          <a class="btn" href="mailto:support@skyhelix.com">Email Us</a>
+        </div>
+
+        <div class="info-box">
+          <h3>Visit Our Office</h3>
+          <p>SkyHelix Headquarters</p>
+          <p>88 Skyline Avenue, New York, NY</p>
+          <p>Open daily from 8:00 AM to 8:00 PM</p>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      SkyHelix Airways © 2026
+    </footer>
+  </div>
+</body>
+</html>

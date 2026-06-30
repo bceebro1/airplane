@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Blog - Airplane</title>
+	<style>
+		:root{--bg:#0b1220;--card:#0f1724;--accent:#2dd4bf;--text:#e6eef6}
+		*{box-sizing:border-box}
+		body{margin:0;font-family:Inter,Segoe UI,Arial;background:linear-gradient(180deg,#041024 0%,var(--bg)100%);color:var(--text)}
+		.container{max-width:1000px;margin:40px auto;padding:24px}
+		header{display:flex;align-items:center;justify-content:space-between}
+		.brand{display:flex;gap:12px;align-items:center}
+		.logo{width:44px;height:44px;border-radius:8px;background:var(--accent);display:flex;align-items:center;justify-content:center;color:#042029;font-weight:700}
+		nav a{color:var(--text);text-decoration:none;margin-left:16px;opacity:0.9}
+		.hero{background:linear-gradient(90deg,rgba(45,212,191,0.06),transparent);border:1px solid rgba(45,212,191,0.08);padding:28px;border-radius:12px;margin-top:20px}
+		.hero h1{margin:0 0 6px;font-size:28px}
+		.hero p{margin:0;color:#bcd7df}
+		.posts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:20px}
+		.post{background:var(--card);padding:16px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
+		.post h3{margin:0 0 8px;font-size:18px}
+		.post p{margin:0 0 12px;color:#a8c3cf;font-size:14px}
+		.meta{font-size:13px;color:#7ea6b1}
+		footer{margin-top:28px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.02);color:#7ea6b1;text-align:center}
+		a.button{display:inline-block;padding:8px 12px;background:var(--accent);color:#02222a;border-radius:8px;text-decoration:none;font-weight:600}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<header>
+			<div class="brand">
+				<div class="logo">A</div>
+				<div>
+					<div style="font-weight:700">Airplane</div>
+					<div style="font-size:13px;color:#7ea6b1">Fly with clean, modern UI</div>
+				</div>
+			</div>
+			<nav>
+				<a href="index.html">Home</a>
+				<a href="blog.html">Blog</a>
+				<a href="#contact">Contact</a>
+			</nav>
+		</header>
+
+		<section class="hero">
+			<h1>Insights & Updates</h1>
+			<p>Articles, tutorials, and news about the Airplane project. Stay informed about releases and best practices.</p>
+		</section>
+
+		<section class="posts">
+			<article class="post">
+				<h3>Getting started with Airplane</h3>
+				<p>Learn how to set up the project, run the development server, and deploy your first build.</p>
+				<div class="meta">Mar 15, 2026 • 6 min read</div>
+			</article>
+
+			<article class="post">
+				<h3>Design system & components</h3>
+				<p>How we structure reusable UI components and maintain a consistent design language across the app.</p>
+				<div class="meta">Feb 10, 2026 • 8 min read</div>
+			</article>
+
+			<article class="post">
+				<h3>Performance tips</h3>
+				<p>Simple techniques to improve load time and responsiveness for better user experience.</p>
+				<div class="meta">Jan 28, 2026 • 5 min read</div>
+			</article>
+		</section>
+
+		<footer id="contact">
+			<p>Want to contribute or share feedback? <a class="button" href="mailto:hello@example.com">Get in touch</a></p>
+			<p style="margin-top:10px">© 2026 Airplane</p>
+		</footer>
+	</div>
+</body>
+</html>

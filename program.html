@@ -1,0 +1,376 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkyHelix Flight Program</title>
+  <style>
+    :root {
+      --bg: #07111f;
+      --panel: rgba(255,255,255,0.08);
+      --panel-strong: rgba(255,255,255,0.14);
+      --text: #f4f7fb;
+      --muted: #aeb9ca;
+      --accent: #5bd3ff;
+      --accent-2: #ff7b54;
+      --line: rgba(255,255,255,0.16);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(91,211,255,0.22), transparent 28%),
+        linear-gradient(135deg, #07111f 0%, #0d1b2e 60%, #02070f 100%);
+      color: var(--text);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 56px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0 28px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: white;
+      font-size: 1.1rem;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      align-items: center;
+      padding: 26px 0 36px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(91,211,255,0.14);
+      color: var(--accent);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 12px 0 18px;
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin: 0 0 18px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 20px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #2ea6d9);
+      color: #04111e;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--line);
+      color: var(--text);
+    }
+
+    .card {
+      background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.24);
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 32px 0 16px;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .schedule {
+      display: grid;
+      gap: 18px;
+    }
+
+    .flight {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 14px;
+      padding: 20px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--line);
+    }
+
+    .flight-info {
+      display: grid;
+      gap: 10px;
+    }
+
+    .flight-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .flight-meta span {
+      white-space: nowrap;
+    }
+
+    .flight h3 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .flight .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(91,211,255,0.14);
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .info-block {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .info-block h4 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+    }
+
+    .info-block p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    footer {
+      padding: 24px 0 8px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero, .info-grid {
+        grid-template-columns: 1fr;
+      }
+      .flight {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      nav { display: none; }
+      .topbar { padding-bottom: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">✈</div>
+        <span>SkyHelix Flight Program</span>
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#aircraft">Aircraft</a>
+        <a href="#services">Services</a>
+      </nav>
+    </header>
+
+    <main class="hero">
+      <section>
+        <span class="eyebrow">Flight operations</span>
+        <h1>Today's SkyHelix departures and route guide.</h1>
+        <p>Browse the latest flight schedule, aircraft details, and premium onboard services. Plan your journey with updated timings, connection notes, and class availability.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#schedule">View Schedule</a>
+          <a class="btn btn-secondary" href="#aircraft">See Aircraft</a>
+        </div>
+      </section>
+
+      <aside class="card">
+        <h3>Program at a glance</h3>
+        <div class="flight-meta" style="margin-top: 12px;">
+          <span>Next departure: 09:30</span>
+          <span>Routes active: 18</span>
+          <span>Fleet size: 12</span>
+        </div>
+        <p style="margin-top: 18px;">SkyHelix operates a balanced mix of domestic and international routes, prioritizing comfort, punctuality, and seamless connections for business and leisure travelers.</p>
+      </aside>
+    </main>
+
+    <section id="schedule">
+      <div class="section-title">
+        <span>Today’s flight schedule</span>
+        <a class="btn btn-secondary" href="#book">Book Now</a>
+      </div>
+      <div class="schedule">
+        <article class="flight">
+          <div class="flight-info">
+            <div class="badge">Non-stop</div>
+            <h3>JFK → LAX</h3>
+            <div class="flight-meta">
+              <span>Departure 09:30</span>
+              <span>Arrival 12:05</span>
+              <span>Gate B12</span>
+            </div>
+          </div>
+          <div style="text-align: right;">
+            <span style="font-weight:700; font-size:1.15rem; color: var(--accent);">A320</span>
+          </div>
+        </article>
+
+        <article class="flight">
+          <div class="flight-info">
+            <div class="badge">Connecting</div>
+            <h3>DXB → SIN</h3>
+            <div class="flight-meta">
+              <span>Departure 11:45</span>
+              <span>Arrival 23:15</span>
+              <span>Stop: BKK</span>
+            </div>
+          </div>
+          <div style="text-align: right;">
+            <span style="font-weight:700; font-size:1.15rem; color: var(--accent);">B787</span>
+          </div>
+        </article>
+
+        <article class="flight">
+          <div class="flight-info">
+            <div class="badge">Premium</div>
+            <h3>LHR → JFK</h3>
+            <div class="flight-meta">
+              <span>Departure 14:20</span>
+              <span>Arrival 17:45</span>
+              <span>Gate C5</span>
+            </div>
+          </div>
+          <div style="text-align: right;">
+            <span style="font-weight:700; font-size:1.15rem; color: var(--accent);">A350</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="aircraft" style="margin-top: 32px;">
+      <div class="section-title">
+        <span>Featured aircraft</span>
+      </div>
+      <div class="info-grid">
+        <article class="info-block">
+          <h4>Airbus A320</h4>
+          <p>Single-aisle fleet for short- and medium-haul routes. Smooth boarding, comfortable legroom, and modern in-flight entertainment.</p>
+        </article>
+        <article class="info-block">
+          <h4>Boeing 787</h4>
+          <p>Long-range widebody with advanced cabin pressurization, whisper-quiet engines, and spacious premium seating.</p>
+        </article>
+        <article class="info-block">
+          <h4>Airbus A350</h4>
+          <p>Flagship aircraft for transcontinental travel with luxury lounges, full-flat suites, and extra-large windows.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="services" style="margin-top: 32px;">
+      <div class="section-title">
+        <span>Onboard service highlights</span>
+      </div>
+      <div class="info-grid">
+        <article class="info-block">
+          <h4>Premium dining</h4>
+          <p>Curated menus, regional flavors, and beverage pairings designed for every cabin class.</p>
+        </article>
+        <article class="info-block">
+          <h4>Fast connectivity</h4>
+          <p>Stay online with high-speed Wi-Fi, streaming options, and curated entertainment on demand.</p>
+        </article>
+        <article class="info-block">
+          <h4>Priority boarding</h4>
+          <p>Enjoy priority check-in, lounge access, and dedicated services for business and elite members.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="book" class="card" style="margin-top: 32px; display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: center;">
+      <div>
+        <h3 style="margin: 0 0 10px;">Plan your flight today</h3>
+        <p style="margin: 0;">Reserve your seat on the next available SkyHelix departure and travel with confidence.</p>
+      </div>
+      <a class="btn btn-primary" href="mailto:reservations@skyhelix.com">Contact Reservations</a>
+    </section>
+
+    <footer>
+      © 2026 SkyHelix Airways – Flight program and schedule.
+    </footer>
+  </div>
+</body>
+</html>
